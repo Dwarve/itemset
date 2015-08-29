@@ -14,8 +14,8 @@ function lolitemset_shortcode( $atts ) {
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>';
     $returnatts .= '<div class="lolitemset-return"><input type="button" class="lolitemset-export-button" value="Save Item Set" /><input type="button" class="lolitemset-return-button" value="Champion List" /></div>
             <div class="lolitemset-header lolitemset-title">
-            <input type="text" name="title" value="Custom Item Set" size="20" /></div><div class="lolitemset-header lolitemset-first">
-            <input type="text" name="first" value="First Group (81 - 100%)" size="40" /></div><div id="lolitemset-itemlist"></div>
+            <input type="text" name="title" value="Custom Item Set" /></div><div class="lolitemset-header lolitemset-first">
+            <input type="text" name="first" value="First Group (81 - 100%)" /></div><div id="lolitemset-itemlist"></div>
         <script type="text/javascript">
             $(document).ready(function(){
                 $(\'#lolitemset-itemlist\').sortable({
@@ -110,10 +110,10 @@ function lolitemset_shortcode( $atts ) {
 
         }
         $champdata .= $firstgroup . '
-            <div class="lolitemset-header"><input type="text" name="second" value="Second Group (61 - 80%)" size="40" /></div>' . $secondgroup . '
-            <div class="lolitemset-header"><input type="text" name="third" value="Third Group (41 - 60%)" size="40" /></div>' . $thirdgroup . '
-            <div class="lolitemset-header"><input type="text" name="fourth" value="Fourth Group (21 - 40%)" size="40" /></div>' . $fourthgroup . '
-            <div class="lolitemset-header"><input type="text" name="fifth" value="Fifth Group (11 - 20%)" size="40" /></div>' . $fifthgroup . '
+            <div class="lolitemset-header"><input type="text" name="second" value="Second Group (61 - 80%)" /></div>' . $secondgroup . '
+            <div class="lolitemset-header"><input type="text" name="third" value="Third Group (41 - 60%)" /></div>' . $thirdgroup . '
+            <div class="lolitemset-header"><input type="text" name="fourth" value="Fourth Group (21 - 40%)" /></div>' . $fourthgroup . '
+            <div class="lolitemset-header"><input type="text" name="fifth" value="Fifth Group (11 - 20%)" /></div>' . $fifthgroup . '
             <div class="lolitemset-header">WILL NOT EXPORT (01 - 10%)</div>' . $noexportgroup;
             
         $champdata .= '</span>
@@ -142,7 +142,7 @@ function lolitemset_instruction() {
         <b>Basic Instructions:</b>
         <ul>
             <li>Enable pop-ups for this site to ensure you get your JSON file.</li>
-            <li>Click the generator link at the top right.</li>
+            <li>Click the generator link at the top.</li>
             <li>Once you see the champion list (grid of champion icons) then you are ready to start.</li>
             <li>Click whichever champion you want to make an item list for.</li>
             <li>The initial layout of the items is sorted by the percentage mentioned above.</li>

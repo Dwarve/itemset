@@ -124,9 +124,6 @@ class lolitemset {
             $upload_dir = wp_upload_dir();
             define( 'LOLITEMSET_UPLOAD_URL', $upload_dir[ 'baseurl' ] );
         }
-
-        // Test filter
-        add_filter( 'the_content', array( $this, 'lolitemset_test' ) );
                 
     }
         
@@ -137,46 +134,6 @@ class lolitemset {
         require_once( LOLITEMSET_PLUGIN_DIR . 'admin/activation.php' );
                 
     }
-        
-    // Test Function - Will be removed in actual release
-    function lolitemset_test( $thecontent ) {
-                //$this->getdata = wp_remote_get('https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/Dwarve?api_key='.LOLINT_API_KEY);
-                //$thecontent.=var_dump($retrievedarray);
-                //$thecontent.=var_dump($retrievedarray);
-                //$thecontent.='INSERT INTO '.$wpdb->prefix.'lolitemset_champions VALUES ('.$retrievedarray[$k]->id.','.$retrievedarray[$k]->key.','.$retrievedarray[$k]->name.','.$retrievedarray[$k]->title.','.$simplified.');<br>';
-                //$thecontent.='<img width="25px" src="http://ddragon.leagueoflegends.com/cdn/4.20.1/img/champion/'.$k.'.png">';
-                //$thecontent.=var_dump();
-                //foreach ($retrieved as $k=>$v){
-                //        $thecontent.="\n".$k.'=>'.$v;
-                //}
-                //$this->getchampiondata = wp_remote_get('https://global.api.pvp.net/api/lol/static-data/na/v1.2/versions?api_key='.LOLINT_API_KEY);
-                //$championjson=json_decode($this->getchampiondata['body']);
-                //$thecontent.=$championjson[0];
-                //$this->lolitemset_item=json_decode(get_option('lolitemset_item'));
-                //$thevars=get_object_vars($this->lolitemset_item);
-                //foreach ($this->lolitemset_item as $k=>$v){
-                //        $thecontent.=$this->lolitemset_item->$k->name;
-                //        break;
-                //}
-                /*$thecontent.=var_dump($this->lolitemset_item);
-                $lolitemset_getrunedata = wp_remote_get('http://ddragon.leagueoflegends.com/cdn/'.LOLINT_VERSION.'/data/en_US/rune.json');
-                $lolitemset_runejson=json_decode($lolitemset_getrunedata['body']);
-                $dataarray=get_object_vars($lolitemset_runejson->data);
-                ksort($dataarray);
-        
-                //var_dump($lolitemset_runejson['data']);
-                foreach ($dataarray as $k=>$v){
-                        $storejson=json_encode($dataarray[$k]->stats);
-                        $simplifiedname=strtolower(preg_replace('/[^a-z]/i', '', $dataarray[$k]->name));
-                        $inputarray=array('id'=>$k,'description'=>$dataarray[$k]->description,'name'=>$dataarray[$k]->name,'image'=>$dataarray[$k]->image->full,'tier'=>$dataarray[$k]->rune->tier,'type'=>$dataarray[$k]->rune->type,'stats'=>$storejson,'simplified_name'=>$simplified);
-                        $thecontent.=$k.' '.$simplifiedname.' '.$dataarray[$k]->name.' '.$dataarray[$k]->description.' '.$dataarray[$k]->image->full.' '.$dataarray[$k]->rune->tier.' '.$dataarray[$k]->rune->type.' '.$storejson.'<br />';
-                        break;
-                }
-                //lolitemset_data('rune',$lolitemset_runejson->data);
-                */
-        return $thecontent;
-    }
-        
         
 }        
 

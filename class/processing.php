@@ -27,7 +27,7 @@ class lolitemset_processing {
             $this->process_er( 'This script must be ran through step-processing.', true );
 
         // Require the core Wordpress stuff
-        $this->blog_header = '{REPLACE}'; //
+        $this->blog_header = dirname( dirname( dirname( dirname( dirname( __FILE__ ) ) ) ) ) . '/wp-blog-header.php'; //
         if ( ! file_exists( $this->blog_header ) )
             $this->process_er( 'Auto changing this file has failed. Please manually update the previous variable with the full dir path to wp-blog-header.php', true );
             
@@ -76,9 +76,9 @@ class lolitemset_processing {
                     $player_id = $_GET[ 'playerId' ];
                 }
                 $extra_data = ( $_GET[ 'startIndex' ] == 0 ) ? array( "0" ) : array( $_GET[ 'startIndex' ] );
-                //var_dump( $extra_data );
+
                 $next_run = $this->process_matches( $player_id, $extra_data );
-                //var_dump( $next_run );
+
                 if ( $next_run[ 'player_id' ] == 0 ) {
                     $sql3 = "UPDATE `" . $wpdb->prefix . "lolitemset_playerlist` SET `processed` = 1 WHERE `playerid` = " . $player_id;
                     $result3 = $this->process_db( $sql3 );
@@ -142,10 +142,10 @@ class lolitemset_processing {
     function process_matches( $player_id, $extra_data = array() ) {
         $start_index = ( isset( $extra_data[0] ) ) ? $extra_data[0] : 0;
         $end_index = $start_index + 20;
-        //var_dump( $end_index );
+
         $new_index = $this->process_api( 'https://' . $this->region . '.api.pvp.net/api/lol/' . $this->region . '/v2.2/matchlist/by-summoner/' . $player_id . '?rankedQueues=RANKED_SOLO_5x5&beginTime=' . $this->timestamp . '&beginIndex=' . $start_index . '&endIndex=' . $end_index . '&api_key=' . $this->api_key, $extra_data );
         $value = ( $new_index[0] == 0 ) ? array( 'player_id' => 0, 'start_index' => 0, 'total_games' => 0 ) : array( 'player_id' => $player_id, 'start_index' => $new_index[0], 'total_games' => $new_index[1] );
-        //var_dump( $value );
+
         return $value;
     }
     
@@ -183,12 +183,10 @@ class lolitemset_processing {
                     $this->process_db( $sql );
                 }
             }
-            //var_dump( $json->totalGames );
-            //var_dump( $json->startIndex );
+
             $new_index = $json->startIndex + 20;
-            //var_dump( $new_index );
+
             if ( $json->totalGames > $json->startIndex + 20 ) {
-                //var_dump( array( $json->startIndex + 20, $json->totalGames ) );
                 return array( $json->startIndex + 20, $json->totalGames );
             } else {
                 return array( 0, 0 );

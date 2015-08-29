@@ -132,24 +132,6 @@ function lolitemset_save_settings(){
                 
         }
     }
-    
-    // Update processing and JSON file with correct require
-    $rewrite_processing = ABSPATH . 'wp-blog-header.php';
-    $processing_filename = dirname( plugin_dir_path( __FILE__ ) ) . '/class/processing.php';
-    $json_filename = dirname( plugin_dir_path( __FILE__ ) ) . '/shortcode/jsonoutput.php';
-    $file = @file_get_contents( $processing_filename );
-    if ( $file ) {
-        $file = str_replace( '{REPLACE}', $rewrite_processing, $file);
-    } else {
-        $returnme .= ' - ERROR UPDATING PROCESSING FILE';
-    }
-    
-    $file = @file_get_contents( $json_filename );
-    if ( $file ) {
-        $file = str_replace( '{REPLACE}', $rewrite_processing, $file);
-    } else {
-        $returnme .= ' - ERROR UPDATING JSON FILE';
-    }
 
     return $returnme;
 }

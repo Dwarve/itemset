@@ -1,6 +1,6 @@
 <?php if ( ! isset( $_POST[ 'data' ] ) ) exit;
 
-$blog_header = '{REPLACE}'; //
+$blog_header = dirname( dirname( dirname( dirname( dirname( __FILE__ ) ) ) ) ) . '/wp-blog-header.php'; //
 if ( ! file_exists( $blog_header ) )
     die();
 
